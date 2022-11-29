@@ -15,18 +15,20 @@ const TodoView = () => {
   useEffect(() => {
     refreshTodos()
   }, [])
-
+   
   const createTodo = async (todo) => {
     const { data } = await axios.post('/todos', todo)
     setTodos([...todos, data])
   }
 
   const deleteTodo = async (todo) => {
+    console.log(todo, 'todo from deleteTodo handler!!')
     await axios.delete(`/todos/${todo._id}`)
     refreshTodos()
   }
 
   const completeTodo = async (todo) => {
+    console.log(todo, 'todo from complete todo handler!')
     await axios.put(`/todos/${todo._id}`, {
       text: todo.text,
       done: true
