@@ -5,17 +5,19 @@ services:
     image: todo-frontend
     build:
       context: ./todo-frontend/
-      dockerfile: ./dev.Dockerfile
+      dockerfile: dev.Dockerfile
     volumes:
       - ./todo-frontend/:/usr/src/app
     ports:
       - 3000:3000
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
     container_name: todo-frontend
   backend:
     image: todo-backend
     build:
       context: ./todo-backend/
-      dockerfile: ./dev.Dockerfile    
+      dockerfile: dev.Dockerfile    
     volumes:
       - ./todo-backend/:/usr/src/app
     ports:
